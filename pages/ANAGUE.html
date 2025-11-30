@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ANAGUE Yves San-nong - Groupe 3</title>
+  <style>
+    /* Reset */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      color: #fff;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Particules d'arrière-plan animées */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+    
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      animation: float 15s infinite ease-in-out;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
+    }
+
+    /* Container principal */
+    .container {
+      position: relative;
+      z-index: 1;
+      padding: 0 20px;
+    }
+
+    /* Header avec effet glassmorphism */
+    .site-header {
+      padding: 40px 20px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      animation: slideDown 0.8s ease-out;
+    }
+    
+    @keyframes slideDown {
+      from { transform: translateY(-100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    
+    .site-header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+    
+    @keyframes glow {
+      from { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); }
+      to { text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.6); }
+    }
+
+    /* Navigation */
+    .navbar {
+      margin: 30px auto;
+      text-align: center;
+      animation: fadeIn 1s ease-out 0.3s both;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .navbar a {
+      display: inline-block;
+      text-decoration: none;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      padding: 12px 30px;
+      border-radius: 50px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .navbar a:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      border-color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* Contenu principal */
+    .content {
+      max-width: 900px;
+      margin: 40px auto;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(15px);
+      padding: 50px;
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      animation: fadeInUp 1s ease-out 0.5s both;
+    }
+    
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .content h2 {
+      font-size: 2.2rem;
+      margin-bottom: 15px;
+      text-align: center;
+      color: #fff;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+    }
+    
+    .content h3 {
+      font-size: 1.5rem;
+      margin-top: 30px;
+      margin-bottom: 15px;
+      color: #fff;
+      position: relative;
+      padding-left: 20px;
+    }
+    
+    .content h3::before {
+      content: "▶";
+      position: absolute;
+      left: 0;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+    }
+
+    /* Cartes de hobbies */
+    .hobby-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+    
+    .hobby-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer;
+    }
+    
+    .hobby-card:hover {
+      transform: translateY(-10px) scale(1.03);
+      background: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    }
+    
+    .hobby-icon {
+      font-size: 3rem;
+      margin-bottom: 15px;
+      display: inline-block;
+      animation: bounce 2s ease-in-out infinite;
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .hobby-card:hover .hobby-icon {
+      animation: spin 0.6s ease-in-out;
+    }
+    
+    @keyframes spin {
+      from { transform: rotate(0deg) scale(1); }
+      to { transform: rotate(360deg) scale(1.2); }
+    }
+    
+    .hobby-card h4 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+    
+    .hobby-card p {
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.6;
+    }
+
+    /* Section À propos avec effet révélation */
+    .about-section {
+      margin-top: 40px;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      border-left: 4px solid rgba(255, 255, 255, 0.5);
+      animation: slideInLeft 1s ease-out 0.8s both;
+    }
+    
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    .about-section p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    /* Footer */
+    .site-footer {
+      margin: 50px auto 30px;
+      padding: 30px 20px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.1);
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 1s ease-out 1s both;
+    }
+    
+    .site-footer small {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.9);
+      letter-spacing: 1px;
+    }
+
+    /* Effet de survol sur texte */
+    .highlight {
+      color: #fff;
+      font-weight: 600;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .highlight::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #fff;
+      transition: width 0.3s ease;
+    }
+    
+    .highlight:hover::after {
+      width: 100%;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .site-header h1 { font-size: 1.8rem; }
+      .content { padding: 30px 20px; }
+      .content h2 { font-size: 1.8rem; }
+      .hobby-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Particules animées -->
+  <div class="particles" id="particles"></div>
+
+  <div class="container">
+    <header class="site-header">
+      <h1>GROUPE N°3</h1>
+      <p style="font-size: 1.3rem; margin-top: 10px; font-weight: 300;">ANAGUE Yves San-nong</p>
+    </header>
+
+    <nav class="navbar">
+      <a href="../index.html">🏠 Retour page principale</a>
+    </nav>
+
+    <main class="content">
+      <section>
+        <h2>✨ Bienvenue sur ma page</h2>
+        
+        <div class="about-section">
+          <p>
+            Bonjour ! Je suis <span class="highlight">ANAGUE Yves San-nong</span>, membre du Groupe 3. 
+            Passionné par la technologie, le développement web et l'innovation, je vous invite à découvrir 
+            mes hobbies et centres d'intérêt.
+          </p>
+        </div>
+
+        <h3>🎯 Mes Hobbies</h3>
+        
+        <div class="hobby-grid">
+          <div class="hobby-card">
+            <div class="hobby-icon">💻</div>
+            <h4>Programmation</h4>
+            <p>Développement web, Python, JavaScript et création d'applications innovantes avec les dernières technologies.</p>
+          </div>
+          
+          <div class="hobby-card">
+            <div class="hobby-icon">🎮</div>
+            <h4>Gaming</h4>
+            <p>Jeux vidéo stratégiques et compétitifs, esport et découverte des dernières nouveautés du monde du gaming.</p>
+          </div>
+          
+          <div class="hobby-card">
+            <div class="hobby-icon">📚</div>
+            <h4>Lecture Tech</h4>
+            <p>Veille technologique, articles sur l'IA, le cloud computing et les nouvelles tendances du développement.</p>
+          </div>
+          
+          <div class="hobby-card">
+            <div class="hobby-icon">🎵</div>
+            <h4>Musique</h4>
+            <p>Écoute de musique électronique, hip-hop et découverte de nouveaux artistes du monde entier.</p>
+          </div>
+          
+          <div class="hobby-card">
+            <div class="hobby-icon">🏀</div>
+            <h4>Sport</h4>
+            <p>Basketball, fitness et activités sportives pour maintenir un équilibre corps-esprit optimal.</p>
+          </div>
+          
+          <div class="hobby-card">
+            <div class="hobby-icon">🎬</div>
+            <h4>Cinéma/Séries</h4>
+            <p>Films de science-fiction, séries technologiques et documentaires sur l'innovation et la tech.</p>
+          </div>
+        </div>
+
+        <div class="about-section" style="margin-top: 40px;">
+          <h3>🚀 Ma Vision</h3>
+          <p>
+            Je crois fermement au pouvoir de la technologie pour transformer le monde. Mon objectif est de 
+            continuer à apprendre, à innover et à contribuer à des projets qui ont un impact positif sur la société.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <small>Copyright — Tous droits réservés Groupe N°3</small>
+    </footer>
+  </div>
+
+  <script>
+    // Génération dynamique des particules
+    const particlesContainer = document.getElementById('particles');
+    const particleCount = 50;
+    
+    for (let i = 0; i < particleCount; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      particle.style.left = Math.random() * 100 + '%';
+      particle.style.animationDelay = Math.random() * 15 + 's';
+      particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+      particlesContainer.appendChild(particle);
+    }
+
+    // Effet de parallaxe sur le scroll
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const parallax = document.querySelector('.particles');
+      if (parallax) {
+        parallax.style.transform = `translateY(${scrolled * 0.5}px)`;
+      }
+    });
+
+    // Animation au clic sur les cartes de hobbies
+    document.querySelectorAll('.hobby-card').forEach(card => {
+      card.addEventListener('click', function() {
+        this.style.animation = 'none';
+        setTimeout(() => {
+          this.style.animation = '';
+        }, 10);
+      });
+    });
+  </script>
+</body>
+</html>

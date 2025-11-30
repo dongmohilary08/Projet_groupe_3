@@ -3,14 +3,213 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>GROUPE 1 — Accueil</title>
+  <title>GROUPE 3 — Accueil</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Animations supplémentaires pour index.html */
+    @keyframes gradient-shift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    body {
+      background: linear-gradient(270deg, #f7f7f9, #e8f0fe, #f7f7f9);
+      background-size: 400% 400%;
+      animation: gradient-shift 15s ease infinite;
+    }
+    
+    .site-header {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .site-header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(11, 94, 215, 0.1), transparent);
+      animation: header-shine 3s infinite;
+    }
+    
+    @keyframes header-shine {
+      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+      100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    }
+    
+    .site-header h1 {
+      position: relative;
+      z-index: 1;
+      animation: title-pop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    @keyframes title-pop {
+      0% { transform: scale(0.5); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    
+    .navbar ul {
+      animation: nav-slide-in 0.8s ease-out 0.3s both;
+    }
+    
+    @keyframes nav-slide-in {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .navbar li {
+      animation: nav-item-pop 0.5s ease-out both;
+    }
+    
+    .navbar li:nth-child(1) { animation-delay: 0.4s; }
+    .navbar li:nth-child(2) { animation-delay: 0.5s; }
+    .navbar li:nth-child(3) { animation-delay: 0.6s; }
+    .navbar li:nth-child(4) { animation-delay: 0.7s; }
+    .navbar li:nth-child(5) { animation-delay: 0.8s; }
+    .navbar li:nth-child(6) { animation-delay: 0.9s; }
+    .navbar li:nth-child(7) { animation-delay: 1s; }
+    
+    @keyframes nav-item-pop {
+      from { opacity: 0; transform: scale(0.8) translateY(-10px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    
+    .navbar a {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .navbar a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(11, 94, 215, 0.3), transparent);
+      transition: left 0.5s ease;
+    }
+    
+    .navbar a:hover::before {
+      left: 100%;
+    }
+    
+    .content {
+      animation: content-fade-up 1s ease-out 0.5s both;
+      position: relative;
+    }
+    
+    @keyframes content-fade-up {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .content::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(11, 94, 215, 0.03) 0%, transparent 100%);
+      border-radius: 12px;
+      pointer-events: none;
+    }
+    
+    .content h2 {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .content h2::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #0b5ed7, #667eea);
+      animation: underline-grow 1s ease-out 1.2s forwards;
+    }
+    
+    @keyframes underline-grow {
+      to { width: 100%; }
+    }
+    
+    .content p {
+      animation: text-fade 1s ease-out 1.5s both;
+    }
+    
+    @keyframes text-fade {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .site-footer {
+      animation: footer-fade 1s ease-out 1.8s both;
+    }
+    
+    @keyframes footer-fade {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Effet de hover 3D sur les cartes */
+    .content {
+      transition: transform 0.3s ease;
+    }
+    
+    .content:hover {
+      transform: perspective(1000px) rotateX(2deg) translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+    
+    /* Particules décoratives */
+    .decorative-circle {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0.1;
+      z-index: -1;
+    }
+    
+    .circle-1 {
+      width: 300px;
+      height: 300px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      top: -100px;
+      right: -100px;
+      animation: float-circle 20s ease-in-out infinite;
+    }
+    
+    .circle-2 {
+      width: 200px;
+      height: 200px;
+      background: linear-gradient(135deg, #0b5ed7, #667eea);
+      bottom: -50px;
+      left: -50px;
+      animation: float-circle 15s ease-in-out infinite reverse;
+    }
+    
+    @keyframes float-circle {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(50px, -50px) scale(1.1); }
+      66% { transform: translate(-30px, 30px) scale(0.9); }
+    }
+  </style>
 </head>
 <body>
+  <!-- Cercles décoratifs -->
+  <div class="decorative-circle circle-1"></div>
+  <div class="decorative-circle circle-2"></div>
+
   <header class="site-header">
     <h1>GROUPE 3</h1>
   </header>
-
+  
   <nav class="navbar">
     <ul>
       <li><a href="index.html">Accueil</a></li>
@@ -18,25 +217,46 @@
       <li><a href="pages/OLAMA.html">OLAMA</a></li>
       <li><a href="pages/FLORANT.html">NGANDJIE</a></li>
       <li><a href="pages/SHERINA.html">NFONTEM</a></li>
-       <li><a href="pages/ANAGUE.html">ANAGUE</a></li>
+      <li><a href="pages/ANAGUE.html">ANAGUE</a></li>
       <li><a href="pages/JULIA.html">MBARGA</a></li>
-       <li><a href="pages/JORDAN.html">MARMADO</a></li>
-      
-
-      <!-- Ajoutez les autres membres ici -->
+      <li><a href="pages/JORDAN.html">MARMADO</a></li>
     </ul>
   </nav>
-
+  
   <main class="content">
     <section>
       <h2>Bienvenue sur le site du Groupe 3</h2>
       <p>Chaque membre contribue à ce site en détaillant sur sa page personnelle ses hobbies.</p>
-
     </section>
   </main>
-
+  
   <footer class="site-footer">
     <small>Copyright — Tous droits réservés Groupe 3</small>
   </footer>
+
+  <script>
+    // Effet de parallaxe au scroll
+    document.addEventListener('mousemove', (e) => {
+      const circles = document.querySelectorAll('.decorative-circle');
+      const x = e.clientX / window.innerWidth;
+      const y = e.clientY / window.innerHeight;
+      
+      circles.forEach((circle, index) => {
+        const speed = (index + 1) * 20;
+        circle.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+      });
+    });
+
+    // Animation des liens au hover
+    document.querySelectorAll('.navbar a').forEach(link => {
+      link.addEventListener('mouseenter', function() {
+        this.style.transform = 'scale(1.05) translateY(-2px)';
+      });
+      
+      link.addEventListener('mouseleave', function() {
+        this.style.transform = 'scale(1) translateY(0)';
+      });
+    });
+  </script>
 </body>
 </html>
