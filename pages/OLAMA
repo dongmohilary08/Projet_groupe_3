@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OLAMA</title>
+    <link rel="stylesheet" href="OOFX/styles.css">
+</head>
+</body>
+<body>
+    <div class="tete">MES HOBBIES - OLAMA GROUPE 3</div>
+    <section class="section">
+        <div class="text">
+            <div class="titre">Musique</div>
+            <p>
+                J'adore la musique, que ce soit l'écouter ou en jouer. J'aime tellement de genres différents, de la pop jusqu'au rap mélodieux, en passant par l'afrobeat, le bouyon, le latino, le VGM, le pluggnb la Jersey Club, et bien d'autres.
+            </p>
+        </div>
+        <img class="side-img" src="img1.png" alt="Musique image">
+    </section>
+
+    <section class="section">
+        <div class="text">
+            <div class="titre">Gaming</div>
+            <p>
+                Le gaming, mon univers préféré ! Derrière les différentes mécaniques de jeu qu'offre chaque jeu de façon se cachent souvent des histoires uniques, des personnages mémorables, des musiques qui touchent et mêmes de nouvelles relations sociales.
+                Il existe tellement de genres de jeux vidéo aujourd'hui que chacun peut y trouver son compte. Même si vous n'aimez pas les jeux vidéo en général mais que vous adorez les histoires fortes ou même créer votre propre histoire, vous trouverez votre place dans le monde du gaming.
+                Pour ma part, j'aime particulièrement les jeux de combat et de tir à cause de l'intensité de précision, de stratégie, de rapidité, de réflexion, d'adaptation et de travail d'équipe pour les jeux de tir particulièrement, tout ça à la fois. C'est comme un sport mental, ce qui existe d'ailleurs officiellement sous le nom de "eSport".
+            </p>
+        </div>
+        <img class="side-img" src="img2.png" alt="Gaming image">
+    </section>
+</body>
+</html>
