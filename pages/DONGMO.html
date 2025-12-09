@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes Hobbies - Dongmo</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #2c3e50, #4a6491);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        nav {
+            background-color: #34495e;
+            padding: 15px 0;
+            text-align: center;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 1.1rem;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav a:hover {
+            background-color: #2c3e50;
+        }
+        
+        section {
+            margin: 40px 0;
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        h2 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            font-size: 2rem;
+        }
+        
+        .category {
+            margin-bottom: 40px;
+        }
+        
+        .anime-grid, .manhwa-grid, .series-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .card {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 3px solid #3498db;
+        }
+        
+        .card-content {
+            padding: 20px;
+        }
+        
+        .card h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+        
+        .card p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 25px 0;
+            margin-top: 50px;
+            border-top: 5px solid #3498db;
+        }
+        
+        footer p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .rating {
+            color: #f39c12;
+            margin: 10px 0;
+            font-size: 1.1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .anime-grid, .manhwa-grid, .series-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            nav a {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>GROUPE 3</h1>
+            <p>Page personnelle de Dongmo - Mes Hobbies</p>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container">
+            <a href="../index.html">Retour page principale</a>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <section id="anime" class="category">
+            <h2>🎌 Mes Animes Préférés</h2>
+            <div class="anime-grid">
+                <div class="card">
+                    <img src="../pages/image/ft.jpeg" alt="">
+                    <div class="card-content">
+                        <h3>Fairy tail</h3>
+                        <div class="rating">★★★★★</div>
+                        <p>Fairy Tail suit l'aventure de Lucy Heartfilia, une jeune mage des esprits célestes qui rêve de rejoindre la célèbre guilde de mages Fairy Tail, réputée pour son pouvoir et ses nombreux scandales.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="../pages/image/elfen.jpeg" alt="">
+                    <div class="card-content">
+                        <h3>Elfen lied</h3>
+                        <div class="rating">★★★★☆</div>
+                        <p>suit l'histoire de Lucy, une Diclonius (mutante avec des cornes et des bras invisibles appelés "vecteurs") qui s'échappe d'un laboratoire et développe une double personnalité après avoir été blessée, devenant une version enfantine amnésique nommée Nyu.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="../pages/image/codegeass.jpg" alt="">
+                    <div class="card-content">
+                        <h3>Gode geass</h3>
+                        <div class="rating">★★★★★</div>
+                        <p>Code Geass suit Lelouch Lamperouge, un prince exilé de l'Empire de Britannia, qui obtient le pouvoir du « Geass » (un œil rouge) lui permettant de donner des ordres absolus. Il utilise ce pouvoir pour diriger une rébellion masquée sous le nom de Zero, dans un Japon (Area 11) occupé par Britannia, cherchant à renverser l'empire, venger sa mère et créer un monde meilleur pour sa sœur Nunnally, le tout en jonglant avec ses identités d'étudiant et de chef terroriste. </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="manhwa" class="category">
+            <h2>🇰🇷 Mes Manhwas Favoris</h2>
+            <div class="manhwa-grid">
+                <div class="card">
+                    <img src="../pages/image/secret.jpeg" alt="">
+                    <div class="card-content">
+                        <h3>secret lady</h3>
+                        <div class="rating">★★★★★</div>
+                        <p>Yoon Seol Woo a vécue une vie sans couleur après avoir été abandonnée pour avoir vu des fantômes, elle finit par mourir dans un accident de voiture. Lorsqu'elle réouvre les yeux, elle est devenue Rosentine, une enfant de duc et comme dans sa vie précédente elle voit des fantômes, elle pense au début qu'elle a une nouvelle chance et qu'elle pourra enfin être heureuse cependant dans ce monde, ceux qui voient des fantômes sont condamnés à être exécutés accusés de sorcellerie.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="../pages/image/broken.jpeg" alt="">
+                    <div class="card-content">
+                        <h3>Broken ring</h3>
+                        <div class="rating">★★★★☆</div>
+                        <p>Inés, une jeune duchesse, choisit le beau mais infidèle héritier Cárcel comme fiancé, déterminée à obtenir un mariage de convenance, mais quand Cárcel découvre qu'elle n'est pas amoureuse de lui, il décide de gagner son cœur, ignorant le sombre secret qui motive Inés.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="../pages/image/true.jpeg" alt="">
+                    <div class="card-content">
+                        <h3>True education</h3>
+                        <div class="rating">★★★★☆</div>
+                        <p>suit Na Hwa-jin, un agent du Bureau de Protection de l'Éducation, qui se lance dans une mission secrète de "rééducation" d'élèves harceleurs et délinquants.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="series" class="category">
+            <h2>🕵️ Mes Séries  Préférées</h2>
+            <div class="series-grid">
+                <div class="card">
+                    <img src="../pages/image/bones.jpeg" alt="">
+                    <div class="card-content">
+                        <h3>Bones</h3>
+                        <div class="rating">★★★★★</div>
+                        <p>série policière américaine centrée sur la brillante anthropologue judiciaire Temperance "Bones" Brennan, qui travaille à l'Institut Jeffersonian et collabore avec le FBI sur des affaires criminelles complexes où les victimes ne sont plus que des restes squelettiques.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="../pages/image/prison.jpg" alt="Mindhunter">
+                    <div class="card-content">
+                        <h3>Prison break</h3>
+                        <div class="rating">★★★★☆</div>
+                        <p>suit les frères Michael Scofield et Lincoln Burrows : Lincoln est injustement condamné à mort pour le meurtre du frère de la Vice-Présidente des États-Unis, et son ingénieur de frère, Michael, se fait incarcérer volontairement à Fox River pour organiser leur évasion complexe, utilisant des tatouages cachant les plans de la prison pour le libérer avant son exécution, puis ils s'engagent dans une course contre la montre face à une conspiration gouvernementale. </p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="../pages/image/nikita.jpegk" alt="True Detective">
+                    <div class="card-content">
+                        <h3>Nikita</h3>
+                        <div class="rating">★★★★☆</div>
+                        <p>Après trois ans d'un dur entraînement et une dernière mise à l'épreuve, Nikita retrouve une nouvelle identité et devient un tueur à la solde du gouvernement.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+       
+    <footer>
+        <div class="container">
+            <p>Copyright — Tous droits réservés Groupe 3 - Page de Dongmo</p>
+           
+        </div>
+    </footer>
+</body>
+</html>
