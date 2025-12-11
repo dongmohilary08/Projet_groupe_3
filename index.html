@@ -5,256 +5,325 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>GROUPE 3 — Accueil</title>
   <link rel="stylesheet" href="style.css" />
-  <style>
-    /* Animations supplémentaires pour index.html */
-    @keyframes gradient-shift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    
-    body {
-      background: linear-gradient(270deg, #f7f7f9, #e8f0fe, #f7f7f9);
-      background-size: 400% 400%;
-      animation: gradient-shift 15s ease infinite;
-    }
-    
-    .site-header {
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .site-header::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(45deg, transparent, rgba(11, 94, 215, 0.1), transparent);
-      animation: header-shine 3s infinite;
-    }
-    
-    @keyframes header-shine {
-      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-      100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-    }
-    
-    .site-header h1 {
-      position: relative;
-      z-index: 1;
-      animation: title-pop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-    
-    @keyframes title-pop {
-      0% { transform: scale(0.5); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-    
-    .navbar ul {
-      animation: nav-slide-in 0.8s ease-out 0.3s both;
-    }
-    
-    @keyframes nav-slide-in {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .navbar li {
-      animation: nav-item-pop 0.5s ease-out both;
-    }
-    
-    .navbar li:nth-child(1) { animation-delay: 0.4s; }
-    .navbar li:nth-child(2) { animation-delay: 0.5s; }
-    .navbar li:nth-child(3) { animation-delay: 0.6s; }
-    .navbar li:nth-child(4) { animation-delay: 0.7s; }
-    .navbar li:nth-child(5) { animation-delay: 0.8s; }
-    .navbar li:nth-child(6) { animation-delay: 0.9s; }
-    .navbar li:nth-child(7) { animation-delay: 1s; }
-    
-    @keyframes nav-item-pop {
-      from { opacity: 0; transform: scale(0.8) translateY(-10px); }
-      to { opacity: 1; transform: scale(1) translateY(0); }
-    }
-    
-    .navbar a {
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .navbar a::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(11, 94, 215, 0.3), transparent);
-      transition: left 0.5s ease;
-    }
-    
-    .navbar a:hover::before {
-      left: 100%;
-    }
-    
-    .content {
-      animation: content-fade-up 1s ease-out 0.5s both;
-      position: relative;
-    }
-    
-    @keyframes content-fade-up {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .content::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, rgba(11, 94, 215, 0.03) 0%, transparent 100%);
-      border-radius: 12px;
-      pointer-events: none;
-    }
-    
-    .content h2 {
-      position: relative;
-      display: inline-block;
-    }
-    
-    .content h2::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 0;
-      height: 3px;
-      background: linear-gradient(90deg, #0b5ed7, #667eea);
-      animation: underline-grow 1s ease-out 1.2s forwards;
-    }
-    
-    @keyframes underline-grow {
-      to { width: 100%; }
-    }
-    
-    .content p {
-      animation: text-fade 1s ease-out 1.5s both;
-    }
-    
-    @keyframes text-fade {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    
-    .site-footer {
-      animation: footer-fade 1s ease-out 1.8s both;
-    }
-    
-    @keyframes footer-fade {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    /* Effet de hover 3D sur les cartes */
-    .content {
-      transition: transform 0.3s ease;
-    }
-    
-    .content:hover {
-      transform: perspective(1000px) rotateX(2deg) translateY(-5px);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    }
-    
-    /* Particules décoratives */
-    .decorative-circle {
-      position: fixed;
-      border-radius: 50%;
-      pointer-events: none;
-      opacity: 0.1;
-      z-index: -1;
-    }
-    
-    .circle-1 {
-      width: 300px;
-      height: 300px;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      top: -100px;
-      right: -100px;
-      animation: float-circle 20s ease-in-out infinite;
-    }
-    
-    .circle-2 {
-      width: 200px;
-      height: 200px;
-      background: linear-gradient(135deg, #0b5ed7, #667eea);
-      bottom: -50px;
-      left: -50px;
-      animation: float-circle 15s ease-in-out infinite reverse;
-    }
-    
-    @keyframes float-circle {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      33% { transform: translate(50px, -50px) scale(1.1); }
-      66% { transform: translate(-30px, 30px) scale(0.9); }
-    }
-  </style>
 </head>
 <body>
   <!-- Cercles décoratifs -->
   <div class="decorative-circle circle-1"></div>
   <div class="decorative-circle circle-2"></div>
+  <div class="decorative-circle circle-3"></div>
+
+  <!-- Particules animées -->
+  <div class="particles-container" id="particlesBackground"></div>
 
   <header class="site-header">
-    <h1>GROUPE 3</h1>
+    <h1 class="main-title">GROUPE 3</h1>
+    <p class="subtitle typewriter-subtitle">Projet Collaboratif Git & GitHub</p>
   </header>
   
   <nav class="navbar">
     <ul>
-      <li><a href="index.html">Accueil</a></li>
-      <li><a href="pages/DONGMO.html">DONGMO</a></li>
-      <li><a href="pages/OLAMA.html">OLAMA</a></li>
-      <li><a href="pages/FLORANT.html">NGANDJIE</a></li>
-      <li><a href="pages/SHERINA.html">NFONTEM</a></li>
-      <li><a href="pages/ANAGUE.html">ANAGUE</a></li>
-      <li><a href="pages/JULIA.html">MBARGA</a></li>
-      <li><a href="pages/JORDAN.html">MARMADO</a></li>
+      <li><a href="index.html" class="nav-link">🏠 Accueil</a></li>
+      <li><a href="pages/DongmoHilary.html" class="nav-link">👤 DONGMO</a></li>
+      <li><a href="pages/OLAMA.html" class="nav-link">👤 OLAMA</a></li>
+      <li><a href="pages/FLORANT.html" class="nav-link">👤 NGANDJIE</a></li>
+      <li><a href="pages/SHERINA.html" class="nav-link">👤 NFONTEM</a></li>
+      <li><a href="pages/ANAGUE.html" class="nav-link">👤 ANAGUE</a></li>
+      <li><a href="pages/JULIA.html" class="nav-link">👤 MBARGA</a></li>
+      <li><a href="pages/JORDAN.html" class="nav-link">👤 MARMADO</a></li>
     </ul>
   </nav>
   
   <main class="content">
-    <section>
-      <h2>Bienvenue sur le site du Groupe 3</h2>
-      <p>Chaque membre contribue à ce site en détaillant sur sa page personnelle ses hobbies.</p>
+    <section class="hero-section">
+      <h2 class="section-title">Bienvenue sur le site du Groupe 3</h2>
+      <p class="intro-text">
+        Chaque membre contribue à ce site en détaillant sur sa page personnelle ses hobbies, 
+        passions et compétences. Ce projet illustre notre maîtrise des outils de versioning 
+        Git et GitHub, ainsi que notre capacité à travailler en équipe de manière professionnelle.
+      </p>
+    </section>
+
+    <section class="project-description">
+      <h3 class="subsection-title">📚 Notre Projet</h3>
+      <div class="project-grid">
+        <div class="project-card">
+          <div class="card-icon">🔄</div>
+          <h4>Versioning Git</h4>
+          <p>
+            Utilisation professionnelle de Git pour gérer les versions du code, 
+            créer des branches individuelles et fusionner les contributions de manière organisée.
+          </p>
+        </div>
+        
+        <div class="project-card">
+          <div class="card-icon">👥</div>
+          <h4>Collaboration GitHub</h4>
+          <p>
+            Travail collaboratif via GitHub avec Pull Requests, revue de code et 
+            gestion des conflits pour assurer la qualité du projet final.
+          </p>
+        </div>
+        
+        <div class="project-card">
+          <div class="card-icon">⚙️</div>
+          <h4>CI/CD avec Jenkins</h4>
+          <p>
+            Intégration continue et déploiement automatisé grâce à Jenkins, 
+            garantissant la qualité et la disponibilité constante de notre site.
+          </p>
+        </div>
+        
+        <div class="project-card">
+          <div class="card-icon">🚀</div>
+          <h4>Déploiement Vercel</h4>
+          <p>
+            Hébergement moderne sur Vercel avec déploiement automatique à chaque 
+            mise à jour pour un site toujours accessible et performant.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="workflow-section">
+      <h3 class="subsection-title">🔧 Notre Workflow DevOps</h3>
+      <div class="workflow-steps">
+        <div class="workflow-step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h4>Clone & Branch</h4>
+            <p>Chaque membre clone le dépôt et crée sa branche de travail personnelle</p>
+          </div>
+        </div>
+        
+        <div class="workflow-arrow">→</div>
+        
+        <div class="workflow-step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h4>Développement</h4>
+            <p>Création de pages personnalisées avec HTML/CSS et JavaScript moderne</p>
+          </div>
+        </div>
+        
+        <div class="workflow-arrow">→</div>
+        
+        <div class="workflow-step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h4>Pull Request</h4>
+            <p>Soumission des modifications via PR pour revue et validation</p>
+          </div>
+        </div>
+        
+        <div class="workflow-arrow">→</div>
+        
+        <div class="workflow-step">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h4>CI/CD Pipeline</h4>
+            <p>Jenkins valide automatiquement le code et déclenche le déploiement</p>
+          </div>
+        </div>
+        
+        <div class="workflow-arrow">→</div>
+        
+        <div class="workflow-step">
+          <div class="step-number">5</div>
+          <div class="step-content">
+            <h4>Déploiement</h4>
+            <p>Publication automatique sur Vercel accessible à tous</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="team-info">
+      <h3 class="subsection-title">👨‍💻 Notre Équipe</h3>
+      <p class="team-description">
+        Le <span class="highlight">Groupe 3</span> est composé de 7 membres passionnés par le développement web 
+        et les technologies modernes. Chaque membre apporte ses compétences uniques et sa créativité 
+        pour créer un projet collaboratif de qualité professionnelle.
+      </p>
+      <div class="team-stats">
+        <div class="stat-item">
+          <div class="stat-number">7</div>
+          <div class="stat-label">Membres</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">100+</div>
+          <div class="stat-label">Commits</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">15+</div>
+          <div class="stat-label">Pull Requests</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">1</div>
+          <div class="stat-label">Objectif Commun</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="technologies-section">
+      <h3 class="subsection-title">💻 Technologies Utilisées</h3>
+      <div class="tech-grid">
+        <div class="tech-item" style="--delay: 0.1s">
+          <span class="tech-icon">🌐</span>
+          <span class="tech-name">HTML5</span>
+        </div>
+        <div class="tech-item" style="--delay: 0.2s">
+          <span class="tech-icon">🎨</span>
+          <span class="tech-name">CSS3</span>
+        </div>
+        <div class="tech-item" style="--delay: 0.3s">
+          <span class="tech-icon">⚡</span>
+          <span class="tech-name">JavaScript</span>
+        </div>
+        <div class="tech-item" style="--delay: 0.4s">
+          <span class="tech-icon">📦</span>
+          <span class="tech-name">Git</span>
+        </div>
+        <div class="tech-item" style="--delay: 0.5s">
+          <span class="tech-icon">🐙</span>
+          <span class="tech-name">GitHub</span>
+        </div>
+        <div class="tech-item" style="--delay: 0.6s">
+          <span class="tech-icon">🔨</span>
+          <span class="tech-name">Jenkins</span>
+        </div>
+        <div class="tech-item" style="--delay: 0.7s">
+          <span class="tech-icon">▲</span>
+          <span class="tech-name">Vercel</span>
+        </div>
+        <div class="tech-item" style="--delay: 0.8s">
+          <span class="tech-icon">🐍</span>
+          <span class="tech-name">Python</span>
+        </div>
+      </div>
     </section>
   </main>
   
   <footer class="site-footer">
-    <small>Copyright — Tous droits réservés Groupe 3</small>
+    <div class="footer-content">
+      <small>Copyright © 2025 — Tous droits réservés Groupe 3</small>
+      <p class="footer-tagline">Développé avec passion et collaboration 💙</p>
+    </div>
   </footer>
 
   <script>
-    // Effet de parallaxe au scroll
+    // Génération de particules animées
+    function createParticles() {
+      const container = document.getElementById('particlesBackground');
+      const particleCount = 50;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 20 + 's';
+        particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
+        container.appendChild(particle);
+      }
+    }
+
+    createParticles();
+
+    // Effet de parallaxe au mouvement de la souris
     document.addEventListener('mousemove', (e) => {
       const circles = document.querySelectorAll('.decorative-circle');
-      const x = e.clientX / window.innerWidth;
-      const y = e.clientY / window.innerHeight;
+      const mouseX = e.clientX / window.innerWidth;
+      const mouseY = e.clientY / window.innerHeight;
       
       circles.forEach((circle, index) => {
-        const speed = (index + 1) * 20;
-        circle.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+        const speed = (index + 1) * 15;
+        const x = (mouseX - 0.5) * speed;
+        const y = (mouseY - 0.5) * speed;
+        circle.style.transform = `translate(${x}px, ${y}px)`;
       });
     });
 
-    // Animation des liens au hover
-    document.querySelectorAll('.navbar a').forEach(link => {
-      link.addEventListener('mouseenter', function() {
-        this.style.transform = 'scale(1.05) translateY(-2px)';
-      });
+    // Effet typewriter sur le sous-titre
+    function typeWriter(element, text, speed = 100) {
+      let i = 0;
+      element.textContent = '';
       
-      link.addEventListener('mouseleave', function() {
-        this.style.transform = 'scale(1) translateY(0)';
+      function type() {
+        if (i < text.length) {
+          element.textContent += text.charAt(i);
+          i++;
+          setTimeout(type, speed);
+        }
+      }
+      
+      setTimeout(type, 1000);
+    }
+
+    const subtitle = document.querySelector('.typewriter-subtitle');
+    if (subtitle) {
+      const originalText = subtitle.textContent;
+      typeWriter(subtitle, originalText);
+    }
+
+    // Animation au scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.project-card, .workflow-step, .tech-item, .stat-item').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Animation des statistiques au scroll
+    function animateCounter(element, target) {
+      let current = 0;
+      const increment = target / 50;
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          element.textContent = target + (target === 100 ? '+' : '');
+          clearInterval(timer);
+        } else {
+          element.textContent = Math.floor(current) + (target === 100 ? '+' : '');
+        }
+      }, 30);
+    }
+
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+          entry.target.classList.add('counted');
+          const statNumbers = entry.target.querySelectorAll('.stat-number');
+          statNumbers.forEach(num => {
+            const target = parseInt(num.textContent);
+            animateCounter(num, target);
+          });
+        }
+      });
+    }, { threshold: 0.5 });
+
+    const teamStats = document.querySelector('.team-stats');
+    if (teamStats) {
+      statsObserver.observe(teamStats);
+    }
+
+    // Amélioration de la navigation - éviter les conflits d'animation
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', function(e) {
+        // Désactiver temporairement les animations hover
+        this.style.pointerEvents = 'none';
+        setTimeout(() => {
+          this.style.pointerEvents = 'auto';
+        }, 100);
       });
     });
   </script>
