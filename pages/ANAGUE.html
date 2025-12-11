@@ -9,13 +9,34 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     
     body {
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       line-height: 1.6;
       color: #fff;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e22ce 100%);
       min-height: 100vh;
       position: relative;
       overflow-x: hidden;
+    }
+
+    /* Background avec images SVG intégrées */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMSkiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==');
+      opacity: 0.3;
+      z-index: 0;
+      pointer-events: none;
+      animation: backgroundPulse 20s ease-in-out infinite;
+    }
+
+    @keyframes backgroundPulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.5; }
     }
 
     /* Particules d'arrière-plan animées */
@@ -33,9 +54,10 @@
       position: absolute;
       width: 4px;
       height: 4px;
-      background: rgba(255, 255, 255, 0.5);
+      background: rgba(255, 255, 255, 0.6);
       border-radius: 50%;
       animation: float 15s infinite ease-in-out;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
     }
     
     @keyframes float {
@@ -54,13 +76,31 @@
 
     /* Header avec effet glassmorphism */
     .site-header {
-      padding: 40px 20px;
+      padding: 50px 20px;
       text-align: center;
-      backdrop-filter: blur(10px);
-      background: rgba(255, 255, 255, 0.1);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-      animation: slideDown 0.8s ease-out;
+      backdrop-filter: blur(15px);
+      background: rgba(255, 255, 255, 0.12);
+      border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      animation: slideDown 1s ease-out;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .site-header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      animation: headerShine 4s infinite;
+    }
+
+    @keyframes headerShine {
+      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+      100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
     }
     
     @keyframes slideDown {
@@ -69,23 +109,54 @@
     }
     
     .site-header h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      font-size: 3rem;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 0 40px rgba(255, 255, 255, 0.3);
       animation: glow 2s ease-in-out infinite alternate;
+      position: relative;
+      z-index: 1;
     }
     
     @keyframes glow {
-      from { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); }
-      to { text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.6); }
+      from { text-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 0 40px rgba(255, 255, 255, 0.3); }
+      to { text-shadow: 0 0 30px rgba(255, 255, 255, 0.8), 0 0 60px rgba(255, 255, 255, 0.6); }
+    }
+
+    .site-header p {
+      font-size: 1.5rem;
+      margin-top: 15px;
+      font-weight: 300;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Typewriter effect */
+    .typewriter {
+      overflow: hidden;
+      border-right: 3px solid rgba(255, 255, 255, 0.75);
+      white-space: nowrap;
+      margin: 20px auto;
+      letter-spacing: 2px;
+      animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+      display: inline-block;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink-caret {
+      from, to { border-color: transparent; }
+      50% { border-color: rgba(255, 255, 255, 0.75); }
     }
 
     /* Navigation */
     .navbar {
-      margin: 30px auto;
+      margin: 40px auto;
       text-align: center;
-      animation: fadeIn 1s ease-out 0.3s both;
+      animation: fadeIn 1s ease-out 0.5s both;
     }
     
     @keyframes fadeIn {
@@ -97,56 +168,80 @@
       display: inline-block;
       text-decoration: none;
       color: #fff;
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.25);
       backdrop-filter: blur(10px);
-      padding: 12px 30px;
+      padding: 15px 35px;
+      margin: 10px;
       border-radius: 50px;
-      border: 2px solid rgba(255, 255, 255, 0.3);
+      border: 2px solid rgba(255, 255, 255, 0.4);
       font-weight: 600;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      font-size: 1.1rem;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .navbar a::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .navbar a:hover::before {
+      width: 300px;
+      height: 300px;
     }
     
     .navbar a:hover {
-      background: rgba(255, 255, 255, 0.3);
-      transform: translateY(-3px) scale(1.05);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-      border-color: rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.35);
+      transform: translateY(-5px) scale(1.08);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+      border-color: rgba(255, 255, 255, 0.7);
     }
 
     /* Contenu principal */
     .content {
-      max-width: 900px;
-      margin: 40px auto;
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(15px);
-      padding: 50px;
+      max-width: 1200px;
+      margin: 50px auto;
+      background: rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(20px);
+      padding: 60px;
       border-radius: 30px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-      animation: fadeInUp 1s ease-out 0.5s both;
+      border: 2px solid rgba(255, 255, 255, 0.25);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+      animation: fadeInUp 1s ease-out 0.8s both;
     }
     
     @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(40px); }
+      from { opacity: 0; transform: translateY(50px); }
       to { opacity: 1; transform: translateY(0); }
     }
     
     .content h2 {
-      font-size: 2.2rem;
-      margin-bottom: 15px;
+      font-size: 2.8rem;
+      margin-bottom: 20px;
       text-align: center;
       color: #fff;
-      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
+      animation: fadeIn 1s ease-out 1.2s both;
     }
     
     .content h3 {
-      font-size: 1.5rem;
-      margin-top: 30px;
-      margin-bottom: 15px;
+      font-size: 2rem;
+      margin-top: 40px;
+      margin-bottom: 25px;
       color: #fff;
       position: relative;
-      padding-left: 20px;
+      padding-left: 25px;
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
     }
     
     .content h3::before {
@@ -154,6 +249,7 @@
       position: absolute;
       left: 0;
       animation: pulse 1.5s ease-in-out infinite;
+      color: #fbbf24;
     }
     
     @keyframes pulse {
@@ -161,72 +257,15 @@
       50% { transform: scale(1.3); }
     }
 
-    /* Cartes de hobbies */
-    .hobby-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 25px;
-      margin-top: 30px;
-    }
-    
-    .hobby-card {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 20px;
-      padding: 30px;
-      text-align: center;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      cursor: pointer;
-    }
-    
-    .hobby-card:hover {
-      transform: translateY(-10px) scale(1.03);
-      background: rgba(255, 255, 255, 0.2);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-    }
-    
-    .hobby-icon {
-      font-size: 3rem;
-      margin-bottom: 15px;
-      display: inline-block;
-      animation: bounce 2s ease-in-out infinite;
-    }
-    
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-    
-    .hobby-card:hover .hobby-icon {
-      animation: spin 0.6s ease-in-out;
-    }
-    
-    @keyframes spin {
-      from { transform: rotate(0deg) scale(1); }
-      to { transform: rotate(360deg) scale(1.2); }
-    }
-    
-    .hobby-card h4 {
-      font-size: 1.3rem;
-      margin-bottom: 10px;
-      color: #fff;
-    }
-    
-    .hobby-card p {
-      font-size: 0.95rem;
-      color: rgba(255, 255, 255, 0.9);
-      line-height: 1.6;
-    }
-
-    /* Section À propos avec effet révélation */
+    /* Section À propos */
     .about-section {
-      margin-top: 40px;
-      padding: 30px;
-      background: rgba(255, 255, 255, 0.1);
+      margin: 40px 0;
+      padding: 35px;
+      background: rgba(255, 255, 255, 0.15);
       border-radius: 20px;
-      border-left: 4px solid rgba(255, 255, 255, 0.5);
-      animation: slideInLeft 1s ease-out 0.8s both;
+      border-left: 5px solid rgba(251, 191, 36, 0.8);
+      animation: slideInLeft 1s ease-out 1s both;
+      backdrop-filter: blur(10px);
     }
     
     @keyframes slideInLeft {
@@ -235,58 +274,280 @@
     }
     
     .about-section p {
+      font-size: 1.2rem;
+      line-height: 2;
+      color: rgba(255, 255, 255, 0.95);
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Profil card avec photo */
+    .profile-card {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      margin: 40px 0;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      animation: fadeIn 1.2s ease-out 1.4s both;
+    }
+
+    .profile-image {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      animation: rotate360 20s linear infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes rotate360 {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .profile-text h4 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      color: #fbbf24;
+    }
+
+    .profile-text p {
       font-size: 1.1rem;
       line-height: 1.8;
-      color: rgba(255, 255, 255, 0.95);
+    }
+
+    /* Cartes de hobbies avec images */
+    .hobby-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .hobby-card {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(15px);
+      border: 2px solid rgba(255, 255, 255, 0.25);
+      border-radius: 25px;
+      padding: 0;
+      overflow: hidden;
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer;
+      position: relative;
+      animation: fadeIn 1s ease-out both;
+    }
+
+    .hobby-card:nth-child(1) { animation-delay: 1.2s; }
+    .hobby-card:nth-child(2) { animation-delay: 1.4s; }
+    .hobby-card:nth-child(3) { animation-delay: 1.6s; }
+    .hobby-card:nth-child(4) { animation-delay: 1.8s; }
+    .hobby-card:nth-child(5) { animation-delay: 2s; }
+    .hobby-card:nth-child(6) { animation-delay: 2.2s; }
+    
+    .hobby-card:hover {
+      transform: translateY(-15px) scale(1.05);
+      background: rgba(255, 255, 255, 0.22);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .hobby-image {
+      width: 100%;
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hobby-image::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.6) 100%);
+    }
+    
+    .hobby-icon {
+      font-size: 4rem;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+      animation: bounceIcon 2s ease-in-out infinite;
+    }
+    
+    @keyframes bounceIcon {
+      0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+      50% { transform: translate(-50%, -50%) translateY(-10px); }
+    }
+    
+    .hobby-card:hover .hobby-icon {
+      animation: spinIcon 0.6s ease-in-out;
+    }
+    
+    @keyframes spinIcon {
+      from { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+      to { transform: translate(-50%, -50%) rotate(360deg) scale(1.3); }
+    }
+
+    .hobby-content {
+      padding: 25px;
+    }
+    
+    .hobby-card h4 {
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+      color: #fbbf24;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    }
+    
+    .hobby-card p {
+      font-size: 1.05rem;
+      color: rgba(255, 255, 255, 0.92);
+      line-height: 1.7;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    .hobby-examples {
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .hobby-examples strong {
+      color: #fbbf24;
+      font-size: 1.1rem;
+    }
+
+    .hobby-examples ul {
+      margin-top: 10px;
+      padding-left: 20px;
+      list-style: none;
+    }
+
+    .hobby-examples li {
+      margin: 8px 0;
+      position: relative;
+      padding-left: 20px;
+    }
+
+    .hobby-examples li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #10b981;
+      font-weight: bold;
+    }
+
+    /* Section compétences */
+    .skills-section {
+      margin-top: 50px;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      animation: fadeIn 1.5s ease-out 2.4s both;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 25px;
+    }
+
+    .skill-item {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 20px;
+      border-radius: 15px;
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .skill-item:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .skill-item h5 {
+      color: #fbbf24;
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    .skill-bar {
+      background: rgba(255, 255, 255, 0.2);
+      height: 8px;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+
+    .skill-progress {
+      height: 100%;
+      background: linear-gradient(90deg, #10b981, #3b82f6);
+      border-radius: 10px;
+      animation: progressFill 2s ease-out forwards;
+      transform-origin: left;
+    }
+
+    @keyframes progressFill {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
     }
 
     /* Footer */
     .site-footer {
-      margin: 50px auto 30px;
-      padding: 30px 20px;
+      margin: 60px auto 40px;
+      padding: 35px 20px;
       text-align: center;
-      backdrop-filter: blur(10px);
-      background: rgba(255, 255, 255, 0.1);
-      border-top: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.1);
-      animation: fadeIn 1s ease-out 1s both;
+      backdrop-filter: blur(15px);
+      background: rgba(255, 255, 255, 0.12);
+      border-top: 2px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 1.8s ease-out 2.6s both;
+      border-radius: 20px;
     }
     
     .site-footer small {
-      font-size: 1rem;
-      color: rgba(255, 255, 255, 0.9);
-      letter-spacing: 1px;
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.95);
+      letter-spacing: 1.5px;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
     }
 
-    /* Effet de survol sur texte */
+    /* Highlight effect */
     .highlight {
-      color: #fff;
-      font-weight: 600;
+      color: #fbbf24;
+      font-weight: 700;
       position: relative;
       display: inline-block;
-    }
-    
-    .highlight::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: #fff;
-      transition: width 0.3s ease;
-    }
-    
-    .highlight:hover::after {
-      width: 100%;
+      text-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
     }
 
     /* Responsive */
     @media (max-width: 768px) {
-      .site-header h1 { font-size: 1.8rem; }
+      .site-header h1 { font-size: 2rem; }
       .content { padding: 30px 20px; }
-      .content h2 { font-size: 1.8rem; }
+      .content h2 { font-size: 2rem; }
       .hobby-grid { grid-template-columns: 1fr; }
+      .profile-card { flex-direction: column; text-align: center; }
+      .profile-image { width: 120px; height: 120px; font-size: 3rem; }
+      .navbar a { padding: 12px 25px; font-size: 1rem; }
     }
   </style>
 </head>
@@ -297,7 +558,7 @@
   <div class="container">
     <header class="site-header">
       <h1>GROUPE N°3</h1>
-      <p style="font-size: 1.3rem; margin-top: 10px; font-weight: 300;">ANAGUE Yves San-nong</p>
+      <p class="typewriter">ANAGUE Yves San-nong</p>
     </header>
 
     <nav class="navbar">
@@ -306,75 +567,214 @@
 
     <main class="content">
       <section>
-        <h2>✨ Bienvenue sur ma page</h2>
+        <h2>✨ Portfolio Personnel</h2>
         
+        <div class="profile-card">
+          <div class="profile-image">👨‍💻</div>
+          <div class="profile-text">
+            <h4>Étudiant Passionné | Développeur | Tech Enthusiast</h4>
+            <p>
+              Bienvenue sur mon espace personnel ! Je suis un étudiant passionné par l'informatique, 
+              le développement web et les nouvelles technologies. J'aime apprendre constamment et 
+              relever de nouveaux défis technologiques.
+            </p>
+          </div>
+        </div>
+
         <div class="about-section">
+          <h3>🎯 À Propos de Moi</h3>
           <p>
-            Bonjour ! Je suis <span class="highlight">ANAGUE Yves San-nong</span>, membre du Groupe 3. 
-            Passionné par la technologie, le développement web et l'innovation, je vous invite à découvrir 
-            mes hobbies et centres d'intérêt.
+            Bonjour ! Je suis <span class="highlight">ANAGUE Yves San-nong</span>, membre actif du Groupe 3. 
+            Passionné par la technologie depuis mon plus jeune âge, j'ai développé un vif intérêt pour 
+            le développement web, la programmation et l'innovation numérique. Mon objectif est de créer 
+            des solutions innovantes qui améliorent la vie quotidienne des utilisateurs tout en continuant 
+            à développer mes compétences dans un environnement collaboratif et stimulant.
           </p>
         </div>
 
-        <h3>🎯 Mes Hobbies</h3>
+        <h3>🎨 Mes Hobbies & Passions</h3>
         
         <div class="hobby-grid">
           <div class="hobby-card">
-            <div class="hobby-icon">💻</div>
-            <h4>Programmation</h4>
-            <p>Développement web, Python, JavaScript et création d'applications innovantes avec les dernières technologies.</p>
+            <div class="hobby-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+              <div class="hobby-icon">💻</div>
+            </div>
+            <div class="hobby-content">
+              <h4>Programmation & Développement</h4>
+              <p>Création d'applications web modernes, développement de solutions innovantes et apprentissage continu des nouvelles technologies.</p>
+              <div class="hobby-examples">
+                <strong>Exemples :</strong>
+                <ul>
+                  <li>Développement de sites web responsives</li>
+                  <li>Applications Python pour l'automatisation</li>
+                  <li>Projets JavaScript interactifs</li>
+                  <li>Intégration CI/CD avec Jenkins</li>
+                </ul>
+              </div>
+            </div>
           </div>
           
           <div class="hobby-card">
-            <div class="hobby-icon">🎮</div>
-            <h4>Gaming</h4>
-            <p>Jeux vidéo stratégiques et compétitifs, esport et découverte des dernières nouveautés du monde du gaming.</p>
+            <div class="hobby-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+              <div class="hobby-icon">🎮</div>
+            </div>
+            <div class="hobby-content">
+              <h4>Gaming & Esport</h4>
+              <p>Jeux vidéo compétitifs, stratégie en équipe et découverte des univers virtuels immersifs.</p>
+              <div class="hobby-examples">
+                <strong>Jeux favoris :</strong>
+                <ul>
+                  <li>FPS tactiques (Valorant, CS2)</li>
+                  <li>MOBA stratégiques (League of Legends)</li>
+                  <li>RPG narratifs (Cyberpunk, Witcher)</li>
+                  <li>Jeux indépendants innovants</li>
+                </ul>
+              </div>
+            </div>
           </div>
           
           <div class="hobby-card">
-            <div class="hobby-icon">📚</div>
-            <h4>Lecture Tech</h4>
-            <p>Veille technologique, articles sur l'IA, le cloud computing et les nouvelles tendances du développement.</p>
+            <div class="hobby-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+              <div class="hobby-icon">📚</div>
+            </div>
+            <div class="hobby-content">
+              <h4>Veille Technologique</h4>
+              <p>Lecture d'articles tech, suivi des tendances IA, cloud computing et innovations numériques.</p>
+              <div class="hobby-examples">
+                <strong>Centres d'intérêt :</strong>
+                <ul>
+                  <li>Intelligence Artificielle & Machine Learning</li>
+                  <li>Architecture cloud (AWS, Azure, GCP)</li>
+                  <li>DevOps & automatisation</li>
+                  <li>Cybersécurité & blockchain</li>
+                </ul>
+              </div>
+            </div>
           </div>
           
           <div class="hobby-card">
-            <div class="hobby-icon">🎵</div>
-            <h4>Musique</h4>
-            <p>Écoute de musique électronique, hip-hop et découverte de nouveaux artistes du monde entier.</p>
+            <div class="hobby-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+              <div class="hobby-icon">🎵</div>
+            </div>
+            <div class="hobby-content">
+              <h4>Musique</h4>
+              <p>Exploration musicale variée, de l'électronique au hip-hop, en passant par la musique internationale.</p>
+              <div class="hobby-examples">
+                <strong>Genres préférés :</strong>
+                <ul>
+                  <li>Électro & House progressive</li>
+                  <li>Hip-hop & Rap conscient</li>
+                  <li>Afrobeat & musiques du monde</li>
+                  <li>Lo-fi & musique d'ambiance</li>
+                </ul>
+              </div>
+            </div>
           </div>
           
           <div class="hobby-card">
-            <div class="hobby-icon">🏀</div>
-            <h4>Sport</h4>
-            <p>Basketball, fitness et activités sportives pour maintenir un équilibre corps-esprit optimal.</p>
+            <div class="hobby-image" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+              <div class="hobby-icon">🏀</div>
+            </div>
+            <div class="hobby-content">
+              <h4>Sport & Fitness</h4>
+              <p>Activités sportives régulières pour maintenir un équilibre physique et mental optimal.</p>
+              <div class="hobby-examples">
+                <strong>Activités :</strong>
+                <ul>
+                  <li>Basketball en équipe</li>
+                  <li>Musculation & fitness</li>
+                  <li>Course à pied & cardio</li>
+                  <li>Yoga & étirements</li>
+                </ul>
+              </div>
+            </div>
           </div>
           
           <div class="hobby-card">
-            <div class="hobby-icon">🎬</div>
-            <h4>Cinéma/Séries</h4>
-            <p>Films de science-fiction, séries technologiques et documentaires sur l'innovation et la tech.</p>
+            <div class="hobby-image" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);">
+              <div class="hobby-icon">🎬</div>
+            </div>
+            <div class="hobby-content">
+              <h4>Cinéma & Séries</h4>
+              <p>Films de science-fiction, séries technologiques et documentaires inspirants sur l'innovation.</p>
+              <div class="hobby-examples">
+                <strong>Favoris :</strong>
+                <ul>
+                  <li>Science-fiction (Matrix, Inception)</li>
+                  <li>Séries tech (Mr. Robot, Silicon Valley)</li>
+                  <li>Documentaires innovation (The Social Dilemma)</li>
+                  <li>Thrillers psychologiques</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="about-section" style="margin-top: 40px;">
-          <h3>🚀 Ma Vision</h3>
+        <div class="skills-section">
+          <h3>🚀 Compétences Techniques</h3>
+          <div class="skills-grid">
+            <div class="skill-item">
+              <h5>HTML/CSS</h5>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 90%;"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <h5>JavaScript</h5>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 85%;"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <h5>Python</h5>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 80%;"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <h5>Git/GitHub</h5>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 88%;"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <h5>React</h5>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 75%;"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <h5>DevOps</h5>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 70%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-section" style="margin-top: 50px;">
+          <h3>💡 Ma Vision & Objectifs</h3>
           <p>
-            Je crois fermement au pouvoir de la technologie pour transformer le monde. Mon objectif est de 
-            continuer à apprendre, à innover et à contribuer à des projets qui ont un impact positif sur la société.
+            Je crois fermement au pouvoir de la technologie pour transformer positivement le monde. 
+            Mon objectif à court terme est de maîtriser les technologies modernes du web et du cloud, 
+            tout en développant des compétences solides en DevOps et automatisation. À long terme, 
+            je souhaite contribuer à des projets innovants qui ont un impact significatif sur la société, 
+            que ce soit dans le domaine de l'éducation numérique, de la santé connectée ou de la 
+            transformation digitale des entreprises.
           </p>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <small>Copyright — Tous droits réservés Groupe N°3</small>
+      <small>Copyright © 2025 — Tous droits réservés Groupe N°3</small>
     </footer>
   </div>
 
   <script>
     // Génération dynamique des particules
     const particlesContainer = document.getElementById('particles');
-    const particleCount = 50;
+    const particleCount = 60;
     
     for (let i = 0; i < particleCount; i++) {
       const particle = document.createElement('div');
@@ -403,6 +803,45 @@
         }, 10);
       });
     });
+
+    // Effet typewriter sur le nom
+    const typewriterText = document.querySelector('.typewriter');
+    if (typewriterText) {
+      const text = typewriterText.textContent;
+      typewriterText.textContent = '';
+      let i = 0;
+      
+      function typeWriter() {
+        if (i < text.length) {
+          typewriterText.textContent += text.charAt(i);
+          i++;
+          setTimeout(typeWriter, 100);
+        }
+      }
+      
+      setTimeout(typeWriter, 500);
+    }
+
+    // Animation des barres de compétences au scroll
+    const observerOptions = {
+      threshold: 0.5,
+      rootMargin: '0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.skill-progress').forEach(bar => {
+            bar.style.animation = 'progressFill 2s ease-out forwards';
+          });
+        }
+      });
+    }, observerOptions);
+
+    const skillsSection = document.querySelector('.skills-section');
+    if (skillsSection) {
+      observer.observe(skillsSection);
+    }
   </script>
 </body>
 </html>
